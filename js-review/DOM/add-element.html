@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding Elements to the Page </title>
+</head>
+
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, exercitationem.</p>
+
+    <ul class="list">
+        <li>Home</li>
+        <li>Feedback</li>
+        <li>contact</li>
+        <li>about</li>
+    </ul>
+    <span class="confirmation"></span>
+    <form action="">
+        <input type="text" placeholder="name">
+        <button onclick="inputText()">Submit</button>
+    </form>
+    <ul class="textPlace"></ul>
+    <script>
+        let paragraph = document.querySelector('p');
+        let heading = document.createElement('h1');
+        heading.textContent = 'This heading'
+        paragraph.insertAdjacentElement('beforebegin', heading);
+
+        //Thiing to remember ['insertAdjacentElement Element': The value provided 'beforeBegin', 'afterBegin', 'beforeEnd', or 'afterEnd'.]
+        //create div element and add some contents to it and heading
+        let divEl = document.createElement('div');
+        let divClass =
+            document.body.appendChild(divEl);
+        let divHeading = document.createElement('h1');
+        divHeading.textContent = "Div Heading";
+        divEl.appendChild(divHeading);
+
+        let art = document.createElement('article')
+        art.textContent = "This is an article";
+        divEl.insertAdjacentElement('beforeEnd', art);
+
+
+        let textEl = document.createElement('p');
+        textEl.textContent = 'This div content';
+
+
+        //divEl.insertAdjacentElement('afterEnd', textEl);
+        //divEl.appendChild(textEl);
+        //document.body.appendChild(divEl);
+
+        //Thiing to remember ['insertAdjacentHTML() Element': The value provided 'beforeBegin', 'afterBegin', 'beforeEnd', or 'afterEnd'.]
+        //let pa2 = document.createElement('p');
+        //pa2.textContent = 'This paragraph 2';
+        //divEl.insertAdjacentHTML('afterBegin', '<p>Hello World');
+
+
+
+
+
+
+
+        let listEl = document.querySelector('.list');
+
+        if (listEl.firstElementChild == 'contact') {
+            console.log('contact is second in the list');
+        } else {
+            let text = document.createElement('li');
+            text.textContent = 'Hello World';
+            listEl.appendChild(text);
+
+        }
+
+        //Remove Page Content [.removeChild(), .remove(),  <parent-element>.removeChild(<child-to-remove>);]
+
+        const listFirstElement = listEl.firstElementChild;
+        listEl.removeChild(listFirstElement);
+        listEl.firstElementChild.remove()
+        let firstElClass = listEl.firstElementChild;
+
+        let head = document.querySelector('div');
+        let body1 = document.querySelector('article');
+        body1.remove()
+        head.remove()
+
+        // Give class name to element
+        firstElClass.className = 'Feedback';
+
+
+
+
+        //Update element content 
+        firstElClass.textContent = 'feedback'
+
+
+
+        // start displaying all events on the document object
+        //monitorEvents(document);
+
+        // turn off the displaying of all events on the document object.
+        //unmonitorEvents(document);
+
+
+
+        //.addEventListener()
+        //.removeEventListener()
+        //.dispatchEvent()
+        //<event-target>.addEventListener(<event-to-listen-for>, <function-to-run-when-an-event-happens>);
+
+        let inputfield = document.querySelector('input').value;
+        let sumbitButton = document.querySelector('button');
+        let textPlaceholder = document.querySelector('.textPlace');
+
+
+
+
+        //sumbitButton.addEventListener('click', function() {
+
+        // if (inputfield !== '') {
+        //   let userText = document.createElement('li');
+        //  inputfield.appendChild(userText);
+
+        //  }
+        //let word = document.createElement('p');
+        // let confirmationWord = document.querySelector('.confirmation');
+        //word.textContent = 'Thank you for sumbting form';
+        //confirmationWord.appendChild(word);
+        //});
+
+        //This will remove whole page keyBoard been pressed
+        document.addEventListener('keypress', function() {
+            document.body.remove();
+        });
+
+        document.body.addEventListener('animationend', function() {
+            //this.style.display = 'none';
+            let main = document.querySelector('.list');
+            console.log("Animation ended");
+        })
+    </script>
+</body>
+
+</html>

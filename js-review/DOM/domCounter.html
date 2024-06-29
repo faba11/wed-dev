@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Counter </title>
+    <script src="domCounter.js"></script>
+    <style>
+        main {
+            background-color: rgb(58, 186, 196);
+            margin-top: 10%rem;
+            width: 30%;
+            margin-left: 30%;
+            margin-top: 10%;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        p {
+            text-align: center;
+            padding-top: 10%;
+            font-size: 3rem;
+        }
+        
+        button:first-child {
+            background-color: greenyellow;
+        }
+        
+        button:nth-last-child(2) {
+            background-color: orange;
+            color: rgb(108, 34, 34);
+        }
+        
+        button:nth-last-child(1) {
+            background-color: red;
+            color: azure;
+        }
+        
+        button:hover {
+            background-color: azure;
+        }
+        
+        button:active {
+            transform: scale(.95);
+            color: rgb(156, 25, 56);
+        }
+        
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="data-display">
+            <p class="output-value">0</p>
+        </div>
+        <div class="container">
+            <button onclick="increment()">Increment</button>
+            <button onclick="decrement()">Decreament</button>
+            <button class="reset-button" onclick="reset()">Reset</button>
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>

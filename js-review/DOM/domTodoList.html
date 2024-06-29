@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> To Do List</title>
+    <script src="domTodoList.js"></script>
+    <style>
+        .container {
+            padding: 10% 40%;
+        }
+        
+        .list {
+            display: block;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+            border: 1px solid #000;
+            max-width: 80px;
+            max-height: 300px;
+        }
+        
+        .add {
+            background-color: greenyellow;
+            cursor: pointer;
+            border-radius: 1rem;
+        }
+        
+        .clear-data {
+            text-align: center;
+            margin-left: 15%;
+            background-color: red;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <input class="tasks" type="text" placeholder="Task">
+        <button class="add" onclick="add()">Add</button>
+
+        <div class="valueTask">
+            <ul class="list">
+                <!--<li>home</li>
+                <li>home</li-->
+            </ul>
+            <button class="clear-data">Clear</button>
+        </div>
+    </div>
+</body>
+
+</html>
