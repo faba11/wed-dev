@@ -1,5 +1,7 @@
-let counter = document.getElementById('counter');
 
+'strict';
+
+let counter = document.getElementById('counter');
 
 let count = JSON.parse(localStorage.getItem("count")) || 0;
 
