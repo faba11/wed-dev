@@ -52,52 +52,48 @@ let object = JSON.parse(jsonString);
 console.log(object);
 
 
+// what is the different between null and undefined?
+// null: is used when we intentionally want to something to be  empty.
+// underfined: is when variable has assign to value.
 
-// learning locastorage
-let counter = document.querySelector('h1');
+// object refferences
+const obj1 = {
+    message: 'hello'
+}
 
-// result.innerHTML = counter
-let result = JSON.parse(localStorage.getItem('result')) || 0;
+let obj2 = obj1;
 
-counter.innerHTML = result;
+obj1.message = 'Good job!';
+
+console.log(obj2)
+console.log(obj1)
 
 
-// increase function
-function increase() {
-    result++;
+let obj3 = {
+    message: 'Good job!'
+}
 
-    if (result <= 0) {
-        document.querySelector('h1').style.color = 'red';
-    } else {
-        document.querySelector('h1').style.color = '#000';
+console.log(obj1 === obj3);
+console.log(obj1 == obj2)
+
+//Destructuring
+const obj4 = {
+    message: 'Destructuring',
+    price: 899
+}
+
+const { message, price } = obj4;
+console.log(message)
+
+// shorthand Property
+const obj5 = {
+    message: message,
+    price,
+
+    // Shorthand Method
+    method() {
+        console.log('method')
     }
-
-    counter.innerHTML = result;
-
-    // convert result into JSON format
-    localStorage.setItem('result', JSON.stringify(result));
 }
-
-// Decreament function
-function decrease() {
-    result--;
-
-    if (result < 0) {
-        document.querySelector('h1').style.color = 'red';
-    }
-
-    counter.innerHTML = result;
-
-    // convert result into JSON format
-    localStorage.setItem('result', JSON.stringify(result));
-}
-
-function reset() {
-    result = 0;
-
-    counter.innerHTML = result;
-    counter.style.color = '#000'
-
-    // convert result into JSON format
-    localStorage.removeItem(result);
-}
+console.log(obj5);
+obj5.method();
