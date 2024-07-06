@@ -1,5 +1,7 @@
+
 // Include lodash library
 const _ = require('lodash');
+
 //8a. Let's say in the Amazon project,
 //  we have a basketball product.
 // This product has a name of 'basketball', a price of 2095 cents.
@@ -81,3 +83,4 @@ repeatStr('test', 3);
 //:Whenever we update the calculation, save it using.setItem().
 //:When the page first loads, get the calculation using.getItem().
 //:Use a default value of '' if a calculation doesn't exist in local storage.
+
