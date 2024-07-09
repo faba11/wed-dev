@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercises 8i</title>
+    <style>
+        body {
+            background-color: rgb(58, 186, 196);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            color: rgb(0, 0, 0);
+            font-size: 1.5rem
+        }
+
+        button {
+            padding: 1rem;
+            font-size: 1.5rem;
+            border: 3px solid green;
+            cursor: pointer;
+            margin: 2rem;
+            background-color: black;
+            color: rgb(255, 255, 255);
+            border-radius: 1rem;
+            transition: all 0.5s;
+        }
+
+        button:hover {
+            background-color: rgb(255, 255, 255);
+            color: black;
+        }
+
+        p {
+            margin: 0;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Let's flip a coin</p>
+    <div>
+        <button onclick="playGame('heads')">Head</button>
+        <button onclick="playGame('tails')">Tails</button>
+    </div>
+    <p class="score">0</p>
+</body>
+
+<script>
+    /*8i.We'll improve the coin flip game from exercise 6j to be like the rock paper scissors game.
+    
+    :--Copy the code from exercise 6j(see the solution for 6j if needed).
+    :--Create 2 buttons to play the game: [Heads][Tails]
+    :--When clicking 'heads', play the game with guess = 'heads'.
+    :--When clicking 'tails', play the game with guess = 'tails'.
+    :--Create a function playGame(guess) to reuse the code.*/
+
+
+    // 8j. Create a score object { wins: 0, losses: 0 }
+    let score = {
+        wins: 0,
+        lose: 0
+    }
+
+
+    const playGame = (playerChoice) => {
+        // const computerChoice = Math.random();
+        let randomNumber = Math.random();
+        const result = randomNumber < 0.5 ? 'heads' : 'tails';
+        // const result = playerChoice === computerChoice ? 'win' : 'lose';
+
+        document.querySelector('p').innerHTML = result == playerChoice ? 'You win!' : 'You lose!';
+
+        document.querySelector('.score').innerHTML = `${score.wins} || ${score.lose}`
+
+
+
+        // 8j
+        // update the score each time after playing, and display the score in the console.
+        if (playerChoice === result) {
+            score.wins++;
+        } else if (playerChoice !== result) {
+            score.lose++;
+        }
+
+    }
+
+
+</script>
+
+</html>

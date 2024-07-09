@@ -18,7 +18,7 @@
         .color-container button {
             padding: 1rem;
             font-size: 1.5rem;
-            border: none;
+            border: 3px solid green;
             cursor: pointer;
             margin: 2rem;
             background-color: black;
@@ -32,10 +32,16 @@
             color: black;
         }
 
+
         .bgColor {
             background-color: #000;
             transition: all 0.5s ease-in-out;
             color: #fff;
+        }
+
+        .gColor {
+            background-color: #000;
+            color: white;
         }
     </style>
 </head>
@@ -50,20 +56,30 @@
         // get local storage color value or set to 'red'
         let getColor = JSON.parse(localStorage.getItem('color')) || 'red';
 
+        // add color class the to body
         document.body.classList.add(getColor);
 
         let changeColor = () => {
+            // body element 
             let bgColor = document.body;
-            bgColor.classList.toggle('bgColor');
+
+            // toggle class and add transition
+            bgColor.classList.toggle('gColor');
+
+            // add transition all 0.8s ease-in-out to the body color 
             bgColor.style.transition = 'all 0.8s ease-in-out';
 
-            let currentColor = classList.contains('bgColor') ? 'gray' : '';
+            // determine current  color based on toggle state
+            let currentColor = bgColor.classList.contains('gColor') ? 'gColor' : '';
+
+            //update button styles based on curent color
+            let btn = document.querySelector('button');
+            btn.style.backgroundColor = bgColor.classList.contains('gColor') ? '#fff' : '#000';
+            btn.style.color = bgColor.classList.contains('gColor') ? '#000' : '#fff';
+
             // set local storage color value to current color
             localStorage.setItem('color', JSON.stringify(currentColor));
         }
-
-        document.addEventListener('documentLoaded', changeColor);
-
     </script>
 
 </body>

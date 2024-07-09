@@ -16,7 +16,7 @@ const amzonProduct = {
 // 8b. Continuing from 8a, let's say we want to increase the price by 500 cents.
 //  Use dot notation to increase the price, and display the updated object in the console.
 
-amzonProduct.price = 500;
+amzonProduct.price += 500;
 console.log(amzonProduct);
 
 
@@ -84,3 +84,23 @@ repeatStr('test', 3);
 //:When the page first loads, get the calculation using.getItem().
 //:Use a default value of '' if a calculation doesn't exist in local storage.
 
+// --- objects.html
+
+
+
+/*8i.We'll improve the coin flip game from exercise 6j to be like the rock paper scissors game.
+
+:--Copy the code from exercise 6j(see the solution for 6j if needed).
+:--Create 2 buttons to play the game: [Heads][Tails]
+:--When clicking 'heads', play the game with guess = 'heads'.
+:--When clicking 'tails', play the game with guess = 'tails'.
+:--Create a function playGame(guess) to reuse the code.*/
+
+// --- exercises8i.html
+
+
+
+
+
+// 8k.Use localStorage to save and load the score(hint:
+// you'll need to use JSON.stringify() to convert the score object to a string).
