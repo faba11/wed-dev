@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #subscribe {
+            padding: 0.5rem 2rem;
+            font-size: 1.5rem;
+            border: 3px solid green;
+            cursor: pointer;
+            margin: 2rem;
+            background-color: black;
+            color: rgb(255, 255, 255);
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Youtube Subscribe Button</p>
+    <button id="subscribe">Subscribe</button>
+
+    <P>Amanzon Shipping</P>
+    <p>Orders under £40 = +£10 shipping </p>
+    <p>Orders over £40 = free shipping</p>
+    <div class="form">
+        <input type="text" placeholder="Cost Of order">
+        <button>Calculate</button>
+    </div>
+    <div>
+        <p>Rock Paper Scissors</p>
+        <a href="/js-course/projects/rockScissorPaper.html">Click Here</a>
+    </div>
+
+    <script>
+        // document.body.innerHTML = "<h1>Hello</h1>";
+        // document.title = 'DOM';
+
+        // properties of document Object Model;
+
+        // document.title; // get the title of the page
+        let title = document.title;
+        console.log(title);
+
+        // document.body; // get the body of the page
+        let body = document.body;
+        console.log(typeof body);
+
+        // document.body.innerHTML control the content of the body
+        let inner = document.body.innerHTML;
+        console.log(inner);
+
+
+    </script>
+</body>
+
+</html>

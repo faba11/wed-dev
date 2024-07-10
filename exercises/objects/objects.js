@@ -102,5 +102,3 @@ repeatStr('test', 3);
 
 
 
-// 8k.Use localStorage to save and load the score(hint:
-// you'll need to use JSON.stringify() to convert the score object to a string).

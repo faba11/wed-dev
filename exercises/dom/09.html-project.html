@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .subscribe {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 1rem;
+            background-color: black;
+            color: rgb(255, 255, 255);
+            border-radius: 1rem;
+        }
+
+        p {
+            margin: 5px 0;
+            text-align: start;
+        }
+
+        .form input[type="number"] {
+            outline: none;
+            border: none;
+            padding: 5px 8px;
+            background-color: rgb(239, 239, 239);
+            font-size: 16px;
+        }
+
+        .form button {
+            padding: 7px 10px;
+            border: none;
+            background-color: green;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>Youtube Subscribe Button</p>
+        <button class="subscribe">Subscribe</button>
+    </div>
+
+
+    <div>
+
+
+        <P>Amanzon Shipping</P>
+        <p>Orders under £40 = +£10 shipping </p>
+        <p>Orders over £40 = free shipping</p>
+        <div class="form">
+            <input id="shipPrice" type="number" placeholder="Cost Of order" onkeydown="handleKeyDown(event)">
+            <button id="calculate" onclick="calcPrice()">Calculate</button>
+            <p id="result"></p>
+        </div>
+        <div>
+            <p>Rock Paper Scissors</p>
+            <a href="/js-course/projects/rockScissorPaper.html">Click Here</a>
+        </div>
+    </div>
+    <script>
+
+        // document object model represents  web page
+        let subscribe = document.querySelector('.subscribe');
+
+        subscribe.onclick = function () {
+            let changeBtn = document.querySelector('.subscribe');
+
+            if (changeBtn.innerHTML === 'Subscribe') {
+                changeBtn.innerHTML = 'Subscribed';
+            } else {
+                changeBtn.innerHTML = 'Subscribe';
+            }
+        }
+
+        function handleKeyDown(event) {
+            if (event.key == 'Enter') {
+                calcPrice();
+            }
+        }
+
+        // calculating shipping cost
+        function calcPrice(event) {
+            let displayShippingPrice = document.querySelector('#result')
+
+            let inputElement = document.querySelector('#shipPrice');
+            let shipCost = Number(inputElement.value);
+
+            if (shipCost <= 0) {
+                event.preventDefault();//prevent from submitting if the there is not valid price provide
+            } else if (shipCost < 40) {
+                shipCost = shipCost + 10;
+
+                displayShippingPrice.textContent = `£${shipCost.toFixed(2)} `;
+
+                inputElement.value = '';
+            } else {
+                displayShippingPrice.textContent = `£${shipCost.toFixed(2)}`;
+                inputElement.value = ''
+            }
+        }
+    </script>
+</body>
+
+</html>

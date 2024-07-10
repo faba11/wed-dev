@@ -14,7 +14,7 @@
             flex-direction: column;
             height: 100vh;
             color: rgb(0, 0, 0);
-            font-size: 1.5rem
+            font-size: 1.5rem;
         }
 
         button {
@@ -42,54 +42,61 @@
 </head>
 
 <body>
-    <p>Let's flip a coin</p>
+    <p id="result">Let's flip a coin</p>
     <div>
-        <button onclick="playGame('heads')">Head</button>
+        <button onclick="playGame('heads')">Heads</button>
         <button onclick="playGame('tails')">Tails</button>
     </div>
-    <p class="score">0</p>
-</body>
+    <p class="scoreEl">Wins: <span id="wins">0</span> | Losses: <span class="losses">0</span></p>
 
-<script>
-    /*8i.We'll improve the coin flip game from exercise 6j to be like the rock paper scissors game.
-    
-    :--Copy the code from exercise 6j(see the solution for 6j if needed).
-    :--Create 2 buttons to play the game: [Heads][Tails]
-    :--When clicking 'heads', play the game with guess = 'heads'.
-    :--When clicking 'tails', play the game with guess = 'tails'.
-    :--Create a function playGame(guess) to reuse the code.*/
+    <script>
+        /* 8i. We'll improve the coin flip game from exercise 6j to be like the rock paper scissors game.
+        
+        :--Copy the code from exercise 6j (see the solution for 6j if needed).
+        :--Create 2 buttons to play the game: [Heads][Tails]
+        :--When clicking 'heads', play the game with guess = 'heads'.
+        :--When clicking 'tails', play the game with guess = 'tails'.
+        :--Create a function playGame(guess) to reuse the code. */
 
+        // Initial display of the score
+        document.querySelector('.scoreEl').innerHTML = `Wins: ${score.wins} | Losses: ${score.losses}`;
 
-    // 8j. Create a score object { wins: 0, losses: 0 }
-    let score = {
-        wins: 0,
-        lose: 0
-    }
+        // 8j. Create a score object { wins: 0, losses: 0 }
+        let score = JSON.parse(localStorage.getItem('scores')) || {
+            wins: 0,
+            losses: 0
+        };
 
+        function playGame(playerChoice) {
 
-    const playGame = (playerChoice) => {
-        // const computerChoice = Math.random();
-        let randomNumber = Math.random();
-        const result = randomNumber < 0.5 ? 'heads' : 'tails';
-        // const result = playerChoice === computerChoice ? 'win' : 'lose';
+            let score = {
+                wins: 0,
+                losses: 0
+            };
 
-        document.querySelector('p').innerHTML = result == playerChoice ? 'You win!' : 'You lose!';
+            let randomNumber = Math.random();
+            const result = randomNumber < 0.5 ? 'heads' : 'tails';
 
-        document.querySelector('.score').innerHTML = `${score.wins} || ${score.lose}`
+            // Display result
+            document.getElementById('result').innerHTML = result === playerChoice ? 'You win!' : 'You lose!';
 
+            // Update score each time after playing
+            if (playerChoice === result) {
+                score.wins++;
+            } else {
+                score.losses++;
+            }
 
+            // Display updated score
+            document.querySelector('.scoreEl').innerHTML = `Wins: ${score.wins} | Losses: ${score.losses}`;
 
-        // 8j
-        // update the score each time after playing, and display the score in the console.
-        if (playerChoice === result) {
-            score.wins++;
-        } else if (playerChoice !== result) {
-            score.lose++;
+            // 8k. Use localStorage to save and load the score (hint:
+            // you'll need to use JSON.stringify() to convert the score object to a string).
+            localStorage.setItem('scores', JSON.stringify(score));
         }
 
-    }
+    </script>
 
-
-</script>
+</body>
 
 </html>
