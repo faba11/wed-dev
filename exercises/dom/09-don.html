@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <button>9a</button>
+    </div>
+
+    <!-- heads and tails buttons -->
+    <div class="game">
+        <button id="play" onclick="playGame()">Heads</button>
+        <button id="play" onclick="playGame()">Tails</button>
+        <p class="result"></p>
+    </div>
+
+    <div>
+        <input type="text" id="name" placeholder="Enter your name" onkeydown="keyPressed(event)">
+        <button class="submit" onclick="inputFunct()">Enter</button>
+        <p class="displayName"></p>
+    </div>
+    <script>
+        // Lesson 9 Exercises - Document Object Model (DOM)
+
+        // 9a. Create a <button>9a</button>. Use document.querySelector('button')
+        //  to get the button from the page, and then display it in the console.
+
+        // I know this is a bit of a cheat, but it works.
+        let firtsBtn = document.querySelector('button');
+        // 9b. Continuing from 9a, create another button <button>9b</button> below.
+        //  Using JavaScript, change the text in the second button to '9b done!'(hint: add a class and use.querySelector).
+        let secondBtn = document.createElement('button');
+        secondBtn.textContent = '9a done'
+
+        let container = document.querySelector('.container');
+
+        //place the element at the bigging of the container
+        container.insertAdjacentElement('afterbegin', secondBtn);
+
+        //place the element at the end of the container
+        let p = document.createElement('p');
+        p.textContent = 'I am p element';
+        container.insertAdjacentElement('beforeend', p);
+
+
+        // 9c. Create 2 buttons 'heads' and 'tails', and a paragraph <p></p> underneath.
+        // When clicking the 'heads' button, display 'You chose: heads' in the paragraph.
+        // When the 'tails' button, display 'You chose: tails'.
+        function playGame() {
+            let headsBtn = document.querySelectorAll('#play');
+            let result = document.querySelector('.result');
+
+            headsBtn.forEach(element => {
+                element.addEventListener('click', () => {
+                    result.innerHTML = 'You chose: ' + element.textContent;
+                });
+            });
+        }
+
+        // 9d. Create a text box (<input>) and a submit button.
+        //  When clicking 'Submit', display 'Your name is: ${text}' on the page (${text} = the text inside the text box)
+        //  (hint: use .value to get the text inside an <input>).
+
+        function inputFunct() {
+            let submitBtn = document.querySelector('.submit');
+            let inputValue = document.querySelector('#name');
+            console.log(inputValue.value);
+            let result = document.querySelector('.displayName');
+
+            result.textContent = `Your name is ${inputValue.value}`;
+            inputValue.value = '';
+        }
+
+        // 9e. Modify exercise 9d so that when you press 'Enter' in the <input>, it will also display the same message on the page
+        // (hint: use onkeydown and the event object).
+        function keyPressed(event) {
+            if (event.key == 'Enter') {
+                inputFunct()
+            }
+        }
+        // 9f.Continuing from 9e, create a function to reuse the code(if you already did this, skip this exercise).
+
+    </script>
+</body>
+
+</html>
