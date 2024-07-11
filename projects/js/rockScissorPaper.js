@@ -31,18 +31,20 @@ function getPlayerMove() {
 
 function playGame(playerMove) {
     const computerMove = getComputerMove();
-
+    let playerMoves = getPlayerMove()
     // display player and computer move
-    document.querySelector("#player").innerHTML = `You chose ${playerMove} and computer chose ${computerMove}`;
+    document.querySelector(".score").innerHTML = `You
+                <img src="images/${playerMoves}-emoji.png" alt="" class="move-image">
+                <img src="images/${computerMove}-emoji.png" alt="" class="move-image">
+                Computer
+            </p>`;
 
     // display result
-    let resultElement = document.querySelector("#result");
+    let resultElement = document.querySelector(".result");
 
     // check if player and computer chose the same
     if (computerMove === playerMove) {
-        resultElement.innerHTML = "Draw!";
-        resultElement.style.color = "orange";
-
+        resultElement.innerHTML = "Tie!";
         document.querySelector('.draw').innerHTML = score.ties++;
 
         // check if player won
@@ -52,22 +54,16 @@ function playGame(playerMove) {
         (computerMove === "scissors" && playerMove === "rock")
     ) {
         resultElement.innerHTML = "you win!";
-        resultElement.style.color = "green";
-
-
         document.querySelector('.win').innerHTML = score.wins++;
 
         // check if player lost
     } else {
         resultElement.innerHTML = "you lose!";
-        resultElement.style.color = "red";
-
         document.querySelector('.lose').innerHTML = score.losses++;
     }
     // store score in local storage
     localStorage.setItem('score', JSON.stringify(score));
 }
-
 
 // reset scores function
 function reset() {

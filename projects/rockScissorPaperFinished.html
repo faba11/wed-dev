@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/rockScissorPaper Fininshed.css">
+    <title>Rock paper scissors</title>
+</head>
+
+<body>
+    <p class="title">Rock Paper scissors</p>
+    <div class="buttons-container">
+        <!-- buttons for game play  -->
+        <button id="move-btn" onclick="playGame('rock')">
+            <img src="images/rock-emoji.png" alt="rock image" class="move-image">
+        </button>
+        <button id="move-btn" onclick="playGame('paper')">
+            <img src="images/paper-emoji.png" alt="paper images" class="move-image">
+        </button>
+        <button id="move-btn" onclick="playGame('scissors')">
+            <img src="images/scissors-emoji.png" alt="scissors image" class="move-image">
+        </button>
+    </div>
+    <div class="main">
+        <!-- display result -->
+        <div>
+            <p class="result">You win.</p>
+            <p class="score">You
+                <img src="images/rock-emoji.png" alt="" class="move-image">
+                <img src="images/scissors-emoji.png" alt="" class="move-image">
+                Computer
+            </p>
+
+        </div>
+        <div class="counter-container">
+            <div>
+                <p>WIN:</p><span class="win">0</span>
+            </div>
+            <div>
+                <p>Lost:</p><span class="lose">0</span>
+            </div>
+            <div>
+                <p>Tie:</p><span class="draw">0</span>
+            </div>
+        </div>
+        <button class="reset" onclick="reset()">Rset Scores</button>
+    </div>
+    <script src="js/rockScissorPaper.js" defer></script>
+</body>
+
+</html>
