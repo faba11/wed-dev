@@ -1,7 +1,6 @@
 
 'strict';
 // game array 
-
 let game = ["rock", "paper", "scissors"];
 
 
