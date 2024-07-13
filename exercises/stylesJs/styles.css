@@ -1,0 +1,88 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 100px;
+    height: 50vw;
+}
+
+:root {
+    --fontSize: 18px;
+    --cursorP: pointer;
+    --bgBtn: #000;
+    --bgWhite: #fff
+}
+
+/* exercise 10a */
+.exercise_10a {
+    background-color: rgb(255, 216, 20);
+    font-size: var(--fontSize);
+    color: #000;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 50px;
+    cursor: var(--cursorP);
+}
+
+/* exercise 10b */
+.exercise_10b {
+    font-size: var(--fontSize);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: var(--cursorP);
+}
+
+.exercise_10b:nth-child(1) {
+    background-color: var(--bgBtn);
+    color: var(--bgWhite);
+}
+
+/* exercise 10c */
+.exercise_10c {
+    font-size: var(--fontSize);
+    background-color: var(--bgBtn);
+    color: var(--bgWhite);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: var(--cursorP);
+}
+
+/* exercise 10d */
+.exercise_10d {
+    font-size: var(--fontSize);
+    background-color: #ececec;
+    color: var(--bgBtn);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: var(--cursorP);
+    transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+}
+
+
+
+/* exercise 10c */
+._10e {
+    display: flex;
+    gap: 15px;
+}
+
+.exercise_10e {
+    font-size: var(--fontSize);
+    background-color: #ececec;
+    color: var(--bgBtn);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: var(--cursorP);
+    transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+}
+
+.is_toggle {
+    background-color: var(--bgBtn);
+    color: var(--bgWhite);
+    transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+}

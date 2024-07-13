@@ -121,8 +121,10 @@
             let inputElement = document.querySelector('#shipPrice');
             let shipCost = Number(inputElement.value);
 
-            if (shipCost <= 0) {
-                event.preventDefault();//prevent from submitting if the there is not valid price provide
+            if (shipCost < 0) {
+                // event.preventDefault();//prevent from submitting if the there is not valid price provide
+                displayShippingPrice.textContent = 'Error: cost cannot be less than £0.'
+                displayShippingPrice.style.color = 'red';
             } else if (shipCost < 40) {
                 shipCost = shipCost + 10;
 
