@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+            flex-direction: column;
+        } */
+        input {
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid black;
+            padding-left: 10px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .add {
+            border-radius: 5px;
+            border: 1px solid black;
+            padding: 8px 12px;
+            outline: none;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: green;
+            color: white;
+        }
+
+        .list {
+            list-style: none;
+            /* width: 100 */
+            padding: 0;
+            padding-left: 5px;
+        }
+
+        .list li {
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: start;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- lesson 11 -->
+    <div>
+        <input type="text" placeholder="Todo list" onkeydown="keyFunc(event)">
+        <button class="add" onclick="addTodo()">Add</button>
+
+        <div>
+            <ul class="list">
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // todos
+        let elementArr = ['banana', 'kiwi', 'apple'];
+        let input = document.querySelector('input');
+
+        rendTodoList()
+
+        function rendTodoList() {
+
+            let tasks = input.value
+
+            //store task in the array
+            elementArr.push(tasks);
+
+            let todo = ''
+            for (let i = 0; i < tasks.length; i++) {
+                let li = document.createElement('li');
+
+                li.textContent = tasks[i];
+
+            }
+            let ul = document.querySelector('ul');
+            ul.appendChild(li);
+        }
+
+        function addTodo() {
+
+            if (!input.value == '') {
+                rendTodoList()
+                // let li = document.createElement('li');
+                // li.textContent = input.value;
+
+                // console.log(elementArr)
+                // let ul = document.querySelector('.list');
+                // ul.appendChild(li);
+
+                input.value = '';
+                rendTodoList();
+            }
+        }
+
+        // add enter key functionality to it.
+        //  When presse enter key will display task
+        function keyFunc(event) {
+            if (event.key == 'Enter') {
+                addTodo()
+            }
+        }
+
+
+        let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+
+        let add = array.reduce((acc, curr) => acc + curr);
+        console.log(add) //output: 55
+
+        let sum = 0;
+        for (let i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        console.log(sum)//output: 55
+
+        // time each number in the array by 3
+        let newArr = array.map(num => num * 3);
+        console.log(newArr)
+
+
+        // time each number in the array by 2
+        let numsArray = [];
+
+        for (let i = 0; i < array.length; i++) {
+            let newNum = array[i] * 2;
+            numsArray.push(newNum);
+        }
+
+        console.log(numsArray)
+
+
+        // firts argument where it starts 
+        // second argument how element will be removed
+        array.slice(0, 2);
+        console.log(array);
+
+        console.log(array);
+
+        let toSplice = array.toSpliced(0, 5);
+
+        // unshift add element in the beginning
+        toSplice.unshift(0);
+
+        // remove first element
+        toSplice.shift()
+        console.log(toSplice);
+
+        // for loop
+        let todoList = [
+            'Make bed',
+            'wash teeth',
+            'Take bath'
+        ]
+
+        for (let index = 0; index < todoList.length; index++) {
+            // 'index' is the position of the element.
+            // 'todoList[index]' logs the element at that specific index.
+            console.log(index, todoList[index]);
+        }
+
+        // loop reverse
+        for (let index = todoList.length - 1; index >= 0; index--) {
+            console.log(index, todoList[index])
+        }
+
+
+        // 
+    </script>
+</body>
+
+</html>
