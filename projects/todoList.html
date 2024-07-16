@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/todoList.css">
+    <title>Todo List</title>
+</head>
+
+<body>
+    <!-- lesson 11 -->
+    <h1 class="title">Todo List</h1>
+    <div>
+        <input type="text" placeholder="Todo list" class="list" onkeydown="keyFunc(event)">
+        <input type="date" class="date">
+        <button class="add" onclick="addTodo()">Add</button>
+
+        <div>
+            <ul class="list">
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // todos
+        let elementArr = [];
+
+        let todoTask = document.querySelector('.list');
+        let dateElement = document.querySelector('.date');
+
+        function rendTodoList() {
+            let name = todoTask.value
+            let dueDate = dateElement.value;
+            //store task in the array
+            if (name && dueDate) {
+                elementArr.push({
+                    name: name,
+                    dueDate: dueDate
+                });
+            }
+            console.log(name, dueDate)
+
+            let ul = document.querySelector('ul');
+            ul.innerHTML = '';
+
+            for (let i = 0; i < elementArr.length; i++) {
+                let todoObj = elementArr[i]
+                const { name, dueDate } = todoObj;
+
+                const html = `<li>
+                   ${name}
+                   <span>${dueDate}
+                    <button onclick="elementArr.splice(${i}, 1);
+                    rendTodoList();
+                    ">Delete</button>
+                    </span> 
+                    </li>`;
+                ul.innerHTML += html;
+            }
+        }
+
+        function addTodo() {
+            if (todoTask.value.trim() !== '' && dateElement.value !== '') {
+                rendTodoList();
+                todoTask.value = '';
+                dateElement.value = ''
+            }
+        }
+
+        // add enter key functionality to it.
+        //  When presse enter key will display task
+        function keyFunc(event) {
+            if (event.key == 'Enter') {
+                addTodo()
+            }
+        }
+    </script>
+</body>
+
+</html>

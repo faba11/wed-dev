@@ -14,16 +14,13 @@
             height: 100vh;
         }
 
-        /* .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 7px;
-            flex-direction: column;
-        } */
+        .title {
+            font-size: 30px;
+        }
+
         input {
-            width: 200px;
-            height: 30px;
+            width: 150px;
+            height: 35px;
             border-radius: 5px;
             border: 1px solid black;
             padding-left: 10px;
@@ -31,10 +28,16 @@
             font-size: 14px;
         }
 
+        .date {
+            width: 105px;
+            height: 35px;
+            font-size: 16px;
+        }
+
         .add {
             border-radius: 5px;
             border: 1px solid black;
-            padding: 8px 12px;
+            padding: 10px 40px;
             outline: none;
             font-size: 14px;
             cursor: pointer;
@@ -44,27 +47,56 @@
 
         .list {
             list-style: none;
-            /* width: 100 */
             padding: 0;
             padding-left: 5px;
         }
 
         .list li {
+            display: flex;
+            justify-content: space-between;
             margin: 5px 0;
             font-size: 18px;
             font-weight: 600;
             text-align: start;
+            margin: 20px 0;
+        }
+
+        li button {
+            padding: 8px 12px;
+            color: #fff;
+            background-color: #ef0707;
+            border: none;
+            border-radius: 5px;
+            margin-left: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: opacity 500ms ease-in-out;
+        }
+
+        li button:hover {
+            opacity: .8;
+        }
+
+        .error {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 6px 0;
+            color: red;
         }
     </style>
 </head>
 
 <body>
     <!-- lesson 11 -->
+    <h1 class="title">Todo List</h1>
     <div>
-        <input type="text" placeholder="Todo list" onkeydown="keyFunc(event)">
+        <input type="text" placeholder="Todo list" class="list" onkeydown="keyFunc(event)">
+        <input type="date" class="date">
         <button class="add" onclick="addTodo()">Add</button>
 
         <div>
+            <span class="error"></span>
             <ul class="list">
             </ul>
         </div>
@@ -73,42 +105,69 @@
 
     <script>
         // todos
-        let elementArr = ['banana', 'kiwi', 'apple'];
-        let input = document.querySelector('input');
+        let elementArr = [];
 
-        rendTodoList()
+        let todoTask = document.querySelector('.list');
+        let dateElement = document.querySelector('.date');
+        let errorMeg = document.querySelector('.error');
 
         function rendTodoList() {
+            let name = todoTask.value;
+            let dueDate = dateElement.value;
 
-            let tasks = input.value
+
+            let currentDate = new Date();
+            let taskDate = currentDate.toISOString().split('T')[0];
+
+            let isValue = true;
+
+            if (!name || !dueDate) {
+                errorMeg.innerHTML = `Error: Name and due date are required`;
+                errorMeg.classList.add('error');
+                isValue = false;
+
+            } else if (dueDate < taskDate) {
+                errorMeg.innerHTML = `Error date is in the past ${dueDate}`;
+                errorMeg.classList.add('error');
+                isValue = false;
+
+            } else {
+                errorMeg.innerHTML = ''
+            }
+
 
             //store task in the array
-            elementArr.push(tasks);
-
-            let todo = ''
-            for (let i = 0; i < tasks.length; i++) {
-                let li = document.createElement('li');
-
-                li.textContent = tasks[i];
-
+            if (isValue) {
+                elementArr.push({
+                    name,
+                    dueDate
+                });
             }
+
             let ul = document.querySelector('ul');
-            ul.appendChild(li);
+            ul.innerHTML = '';
+
+            for (let i = 0; i < elementArr.length; i++) {
+                let todoObj = elementArr[i]
+                const { name, dueDate } = todoObj;
+
+                const html = `<li>
+                   ${name}
+                   <span>${dueDate}
+                    <button onclick="elementArr.splice(${i}, 1);
+                    rendTodoList();
+                    ">Delete</button>
+                    </span> 
+                    </li>`;
+                ul.innerHTML += html;
+            }
         }
 
         function addTodo() {
-
-            if (!input.value == '') {
-                rendTodoList()
-                // let li = document.createElement('li');
-                // li.textContent = input.value;
-
-                // console.log(elementArr)
-                // let ul = document.querySelector('.list');
-                // ul.appendChild(li);
-
-                input.value = '';
+            if (todoTask.value.trim() !== '' && dateElement.value !== '') {
                 rendTodoList();
+                todoTask.value = '';
+                dateElement.value = ''
             }
         }
 
@@ -119,6 +178,8 @@
                 addTodo()
             }
         }
+
+
 
 
         let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
