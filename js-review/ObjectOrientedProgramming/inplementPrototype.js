@@ -1,5 +1,5 @@
 //Implement the Array Method on a Prototype
-Array.prototype.myMap = function(callback) {
+Array.prototype.myMap = function (callback) {
     let newArray = [];
     let newArr = [];
     for (let i = 0; i < this.length; i++) {

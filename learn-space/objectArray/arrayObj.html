@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="arrayObj.css">
+    <title>Array</title>
+</head>
+
+<body>
+    <!-- lesson 11 -->
+    <h1 class="title">Todo List</h1>
+    <div class="inputs">
+        <input type="text" placeholder="Todo list" class="todoElement">
+        <input type="date" class="date">
+        <button class="add" onclick="addTodo()">Add</button>
+    </div>
+
+    <div class="container">
+        <!-- <div class="error">dfgdfg</div> -->
+    </div>
+    <div id="error"></div>
+
+
+
+    <script>
+        // todos
+        let elementArr = [];
+
+        let todoTask = document.querySelector('.todoElement');
+        let dateElement = document.querySelector('.date');
+        let errorMeg = document.querySelector('#error');
+
+        // TO RENDER DATA FROM LOCAL STORAGE
+        let store = JSON.parse(localStorage.getItem('store')) || [];
+        for (let i = 0; i < store.length; i++) {
+            elementArr.push(store[i]);
+            rendTodoList();
+        }
+
+        //function to render todo list
+        function rendTodoList() {
+            let todoList = document.querySelector('.container');
+            todoList.innerHTML = '';
+
+            for (let i = 0; i < elementArr.length; i++) {
+                let todoObj = elementArr[i]
+                const { name, dueDate } = todoObj;
+
+                const html =
+                    `<div>${name}</div>
+                    <div>${dueDate}</div>
+                    <button onclick="deleteTodo(${i})">Delete</button>`;
+                todoList.innerHTML += html;
+            }
+
+            localStorage.setItem('store', JSON.stringify(elementArr))
+        }
+
+        //function to add todo
+        function addTodo() {
+            let name = todoTask.value.trim();
+            let dueDate = dateElement.value.trim();
+
+
+            let currentDate = new Date();
+            let taskDate = currentDate.toISOString().split('T')[0];
+
+            let isValue = true;
+
+            if (!name || !dueDate) {
+                errorMeg.innerHTML = `Error: Name and due date are required`;
+
+                setTimeout(() => {
+                    errorMeg.style.display = 'none'
+                }, 3000)
+                isValue = false;
+
+            } else if (dueDate < taskDate) {
+                errorMeg.innerHTML = `Error date is in the past ${dueDate}`;
+                setTimeout(() => {
+                    errorMeg.style.display = 'none'
+                }, 3000);
+                isValue = false;
+
+            }
+
+            // if value is true add todo push in array
+            if (isValue) {
+                elementArr.push({ name, dueDate });
+                rendTodoList();
+                todoTask.value = '';
+                dateElement.value = '';
+            }
+
+            localStorage.setItem('store', JSON.stringify(elementArr))
+        }
+
+        // function to delete todo
+        function deleteTodo(index) {
+            elementArr.splice(index, 1);
+            rendTodoList();
+
+            localStorage.setItem('store', JSON.stringify(elementArr))
+        }
+
+        // function to add enter key functionality to it.
+        function keyFunc(event) {
+            if (event.key == 'Enter') {
+                addTodo()
+            }
+        }
+
+        // event listener for enter key
+        todoTask.addEventListener('keypress', keyFunc);
+        dateElement.addEventListener('keypress', keyFunc);
+
+
+        // let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+
+        // let add = array.reduce((acc, curr) => acc + curr);
+        // console.log(add) //output: 55
+
+        // let sum = 0;
+        // for (let i = 0; i < array.length; i++) {
+        //     sum += array[i];
+        // }
+        // console.log(sum)//output: 55
+
+        // // time each number in the array by 3
+        // let newArr = array.map(num => num * 3);
+        // console.log(newArr)
+
+
+        // // time each number in the array by 2
+        // let numsArray = [];
+
+        // for (let i = 0; i < array.length; i++) {
+        //     let newNum = array[i] * 2;
+        //     numsArray.push(newNum);
+        // }
+
+        // console.log(numsArray)
+
+
+        // // firts argument where it starts
+        // // second argument how element will be removed
+        // array.slice(0, 2);
+        // console.log(array);
+
+        // console.log(array);
+
+        // let toSplice = array.toSpliced(0, 5);
+
+        // // unshift add element in the beginning
+        // toSplice.unshift(0);
+
+        // // remove first element
+        // toSplice.shift()
+        // console.log(toSplice);
+
+        // // for loop
+        // let todoList = [
+        //     'Make bed',
+        //     'wash teeth',
+        //     'Take bath'
+        // ]
+
+        // for (let index = 0; index < todoList.length; index++) {
+        //     // 'index' is the position of the element.
+        //     // 'todoList[index]' logs the element at that specific index.
+        //     console.log(index, todoList[index]);
+        // }
+
+        // // loop reverse
+        // for (let index = todoList.length - 1; index >= 0; index--) {
+        //     console.log(index, todoList[index])
+        // }
+
+
+        // 
+    </script>
+</body>
+
+</html>
