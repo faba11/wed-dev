@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" name="" id="input" placeholder="input">
+        <button id="button">click</button>
+
+    </div>
+    <p></p>
+</body>
+<script>
+    let input = document.querySelector('#input');
+    let button = document.querySelector('button');
+    let message = document.querySelector('p');
+
+
+
+    function fetchData(userId) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (userId == '') {
+                    reject('Error: User ID is required')
+                } else if (userId == '123') {
+                    resolve({
+                        name: 'John', email: 'john@example.com'
+                    });
+                } else {
+                    reject('Error: user not found')
+                }
+            }, 2000)
+        })
+    }
+
+    async function displayData() {
+        message.textContent = 'fetching data...'
+        let userId = input.value.trim();
+
+        try {
+            const user = await fetchData(userId);
+            message.textContent = `name: ${user.name},| email: ${user.email}`
+        } catch (error) {
+            message.textContent = error;
+        } finally {
+            input.value = '';
+        }
+
+        // not async await promise
+        // fetchData(userId).then((user) => {
+        //     message.textContent = `name: ${user.name},| email: ${user.email}`
+        // }).catch((error) => {
+        //     message.textContent = error;
+        // }).finally(() => {
+        //     input.value = '';
+        // })
+
+    }
+    button.addEventListener('click', displayData);
+
+
+    // let promise = new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         if (inputValue !== '') {
+    //             resolve('Data have been successful submit');
+    //         } else {
+    //             reject('Error: No input provided')
+    //         }
+    //     }, 2000)
+
+    // })
+
+    // promise.then((resolveMessage) => {
+    //     message.textContent = resolveMessage;
+    // }).catch((rejectMessage) => {
+    //     message.textContent = rejectMessage;
+    // })
+
+    // input.value = '';
+</script>
+
+</html>

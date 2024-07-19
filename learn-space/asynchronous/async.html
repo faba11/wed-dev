@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="input" placeholder="enter name">
+        <button id="allUsersButton">Fetch All Users</button>
+        <button id="searchButton">Search Users</button>
+    </div>
+
+
+    <p class="message"></p>
+    <script>
+        let input = document.querySelector('#input')
+        let message = document.querySelector('.message');
+
+        const fakeDatabase = {
+            '123': { name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+            '456': { name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+            '789': { name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' },
+            '101': { name: 'Alice Brown', email: 'alice@example.com', role: 'User' },
+            '202': { name: 'Charlie Davis', email: 'charlie@example.com', role: 'Manager' }
+        };
+
+
+        function fetchData(userId) {
+
+            // message.textContent = 'fetching data...'
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (userId === '') {
+                        reject('Error: User ID is required');
+                    } else if (userId in fakeDatabase) {
+                        resolve(fakeDatabase[userId]);
+                    } else {
+                        reject('Error: User not found');
+                    }
+                }, Math.random() * 1000 + 1000); // Random delay between 1-2 seconds
+            });
+        }
+
+        function fetchAllUsers() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(Object.values(fakeDatabase));
+                }, 3000); // Simulating a longer delay for fetching all users
+            });
+        }
+
+        function searchUsers(query) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const results = Object.values(fakeDatabase).filter(user =>
+                        user.name.toLowerCase().includes(query.toLowerCase()) ||
+                        user.email.toLowerCase().includes(query.toLowerCase())
+                    );
+                    resolve(results);
+                }, 2000);
+            });
+        }
+
+        async function displayData() {
+            message.textContent = 'Fetching data...';
+            let userId = input.value.trim();
+
+            try {
+                const user = await fetchData(userId);
+                message.textContent = `Name: ${user.name}, Email: ${user.email}, Role: ${user.role}`;
+            } catch (error) {
+                message.textContent = error;
+            } finally {
+                input.value = '';
+            }
+        }
+
+        async function displayAllUsers() {
+            message.textContent = 'Fetching all users...';
+
+            try {
+                const users = await fetchAllUsers();
+                message.textContent = users.map(user => `${user.name} (${user.role})`).join(', ');
+            } catch (error) {
+                message.textContent = error;
+            }
+        }
+
+        async function searchAndDisplayUsers() {
+            const query = input.value.trim();
+            message.textContent = 'Searching users...';
+
+            try {
+                const results = await searchUsers(query);
+                if (results.length > 0) {
+                    message.textContent = results.map(user => `${user.name} (${user.email})`).join(', ');
+                } else {
+                    message.textContent = 'No users found';
+                }
+            } catch (error) {
+                message.textContent = error;
+            } finally {
+                input.value = '';
+            }
+        }
+
+        // button.addEventListener('click', displayData);
+        document.getElementById('allUsersButton').addEventListener('click', displayAllUsers);
+        document.getElementById('searchButton').addEventListener('click', searchAndDisplayUsers);
+    </script>
+</body>
+
+</html>
