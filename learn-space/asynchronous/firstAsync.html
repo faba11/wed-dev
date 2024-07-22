@@ -149,30 +149,33 @@
         }
 
         function displayPokemon(pokemon) {
-
-            container.innerHTML = '';
-            message.textContent = `Showing data for ${pokemon.name}`;
-
-            const img = document.createElement('img');
-
-            // This will set the src attribute of the image
-            img.src = pokemon.sprites.front_default;
-
-            // This will set the alt attribute of the image
-            img.alt = pokemon.name;
-            container.appendChild(img);
+            setTimeout(() => {
 
 
-            let info = document.createElement('div');
-            info.innerHTML = `<p> name : ${pokemon.name}</p>
+                container.innerHTML = '';
+                message.textContent = `Showing data for ${pokemon.name}`;
+
+                const img = document.createElement('img');
+
+                // This will set the src attribute of the image
+                img.src = pokemon.sprites.front_default;
+
+                // This will set the alt attribute of the image
+                img.alt = pokemon.name;
+                container.appendChild(img);
+
+
+                let info = document.createElement('div');
+                info.innerHTML = `<p> name : ${pokemon.name}</p>
             <p> height : ${pokemon.height}</p>
             <p> weight : ${pokemon.weight}</p>
             <p> base experience : ${pokemon.base_experience}</p>`
 
-            container.appendChild(info);
-            container.style.backgroundColor = 'black';
-            container.style.color = 'white';
-            container.style.display = 'flex';
+                container.appendChild(info);
+                container.style.backgroundColor = 'black';
+                container.style.color = 'white';
+                container.style.display = 'flex';
+            }, 2000);
         }
 
 
