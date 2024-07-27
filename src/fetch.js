@@ -18,8 +18,9 @@ let dataObj = {
     nationality: 'USA'
 }
 
-fetch('https://api/example.com', {
-    method: 'POST',
+
+fetch('https://jsonplaceholder.typicode.com/users', {
+    method: 'DELETE',
     headers: {
         'content-Type': 'application/json'
     },
