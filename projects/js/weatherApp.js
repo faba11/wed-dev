@@ -20,11 +20,6 @@ document.addEventListener('keypress', function (event) {
 async function fetchWeather() {
     try {
         let inputValue = inputData.value.trim();
-
-        // if (inputValue == 'incorrect name') {
-        //     console.log(inputValue);
-        // }
-
         const response = await fetch(`${apiUrl} ${inputValue} &appid=${apiKey}`)
         if (!response.ok) {
             throw new Error('Network is not responding')
