@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      select {
+        color: white;
+        background-color: transparent;
+      }
+
+      select option {
+        color: black;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body
+    class="flex justify-center items-center h-screen w-screen flex justify-center items-center h-screen bg-gray-900"
+  >
+    <!-- new currency -->
+    <div class="space-y-4">
+      <!-- First input group -->
+      <div
+        class="flex items-center bg-gray-800 border border-gray-600 rounded-lg px-4 py-2"
+      >
+        <input
+          type="number"
+          id="user-currency"
+          placeholder="Amount"
+          value="0"
+          class="bg-transparent text-white flex-1 focus:outline-none text-lg"
+        />
+        <div class="w-px bg-gray-600 h-6 mx-2"></div>
+
+        <select
+          id="select-user-currency"
+          class="bg-transparent text-white text-lg focus:outline-none"
+        >
+          <option value="EUR">Euro (EUR)</option>
+          <option value="USD">US Dollar (USD)</option>
+          <option value="GBP">British Pound (GBP)</option>
+          <option value="AUD">Australian Dollar (AUD)</option>
+        </select>
+      </div>
+
+      <!-- Second input group -->
+      <div
+        class="flex items-center bg-gray-800 border border-gray-600 rounded-lg px-4 py-2"
+      >
+        <input
+          type="text"
+          id="convert-currency"
+          readonly
+          placeholder="Converted Amount"
+          class="bg-transparent text-white flex-1 focus:outline-none text-lg"
+        />
+        <div class="w-px bg-gray-600 h-6 mx-2"></div>
+        <select
+          id="select-convert-currency"
+          class="bg-transparent text-white text-lg focus:outline-none"
+        >
+          <option value="EUR">Euro (EUR)</option>
+          <option value="USD">US Dollar (USD)</option>
+          <option value="GBP">British Pound (GBP)</option>
+          <option value="AUD">Australian Dollar (AUD)</option>
+        </select>
+      </div>
+      <div class="flex justify-center">
+        <button id="btn" class="bg-green-500 text-white py-2 px-4 rounded-lg">
+          Convert
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

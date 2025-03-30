@@ -1,9 +1,9 @@
-var test = {
+var re = {
   prop: 42,
-  func: function() {
+  func: function () {
     return this.prop;
   },
 };
 
-console.log(test.func());
+console.log(re.func());
 // expected output: 42

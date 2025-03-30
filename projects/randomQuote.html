@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>Random Quote Generator</title>
+  </head>
+  <body class="flex justify-center items-center h-screen w-screen">
+    <div class="bg-yellow-300 h-auto max-w-2xl shadow-2xl pb-3">
+      <h1 class="text-3xl text-center bg-green-400 text-white mb-3 p-3">
+        Random Quote Generator
+      </h1>
+      <div class="p-5">
+        <p id="quote-message" class="text-lg font-sans"></p>
+        <p id="category" class="text-center text-2xl mt-2 mb-0"></p>
+      </div>
+      <div class="flex justify-center mb-3">
+        <button
+          id="quote-btn"
+          class="text-xl text-white font-medium bg-green-400 py-1 px-2 rounded-md flex block hover:bg-green-500"
+        >
+          Generate
+        </button>
+      </div>
+    </div>
+    <script src="js/randomQuote.js"></script>
+  </body>
+</html>

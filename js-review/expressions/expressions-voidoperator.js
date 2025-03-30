@@ -4,9 +4,9 @@ void function test() {
 }();
 
 try {
-  test();
+  re();
 }
-catch(e) {
+catch (e) {
   console.log(e);
   // expected output: ReferenceError: test is not defined
 }
